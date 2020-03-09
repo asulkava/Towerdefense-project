@@ -1,0 +1,5 @@
+- 10.3 progress
+- Added groundwork for towers and enemies
+- Problems with git has taken most of my time, got it fixed on 9.3 and started to properly work on project.
+- Time spent has been around 5 hours, would have done more work but other courses have taken too much time and solving problems in git took time.
+- I am behind my schedule, but will hope to catch up this week.
