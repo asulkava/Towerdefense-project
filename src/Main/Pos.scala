@@ -1,6 +1,6 @@
 package main 
 
-import scala.math.
+import scala.math._
 
 class Pos(var x: double, var y: double){
   
