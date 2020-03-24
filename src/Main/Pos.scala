@@ -2,7 +2,7 @@ package main
 
 import scala.math._
 
-class Pos(var x: double, var y: double){
+class Pos(var x: Double, var y: Double){
   
   override def toString() = "Pos(" + this.x + ", " + this.y + ")"
   
@@ -15,7 +15,7 @@ class Pos(var x: double, var y: double){
   
   def distanceToAnother(other: Pos) = sqrt(pow(other.x - this.x, 2) + pow(other.y - this.y,2))
   
-  def changePosTo(x: Double, y: double) = new Pos(x,y)
+  def changePosTo(x: Double, y: Double) = new Pos(x,y)
   
   
   

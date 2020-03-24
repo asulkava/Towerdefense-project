@@ -1,6 +1,6 @@
 package towers
 
-import Main._
+import main._
 
 abstract class Tower (position: Pos){
  
