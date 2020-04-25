@@ -11,6 +11,8 @@ class Pos(var x: Float, var y: Float) {
 	def /(scale: Double) = new Pos(x/scale.toFloat, y/scale.toFloat)
 	def length = sqrt(x*x+y*y)
 	
+	
+	
 
 	def angle(other: Pos) : Float = {
 	  (-atan2(this.x-other.x, this.y-other.y)).toFloat
@@ -32,9 +34,9 @@ class Pos(var x: Float, var y: Float) {
 
 
 	def normalized() : Pos = {
-	  var vec = Pos(this)
-	  vec.normalize()
-	  vec
+	  var x = Pos(this)
+	  x.normalize()
+	  x
 	}
 	
 
