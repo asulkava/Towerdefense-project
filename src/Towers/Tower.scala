@@ -6,9 +6,7 @@ import GameStates.PlayState
 import Main._
 import Interface._
 
-/*
- * Small abstract class to keep track of everything buildable
- */
+// abstarct class for buildings
 abstract class Buildable(var position: Pos) {
   var cost: Int
   var range: Int
@@ -22,33 +20,26 @@ abstract class Towers(position: Pos) extends Buildable(position: Pos) {
   var image_id = "tower"
   var cd = 0
   
-  /*
-   * Gets the distance to target. if tower has no target, return 9999
-   */
+  //distance to target
   def targetDistance: Double = {
     if(target.isDefined) {
       (this.position.distanceToAnother(target.get.position))
     }
-    else {9999}
+    else {999}
   }
   
   def draw(scale: Int) = {
     main.image(image, this.position.x, this.position.y)
   }
   
- /*
-  * Draws the range of the tower
-  */
+  // draws the range
  def drawRange = {
-//    main.pushMatrix()
     main.fill(0, 0, 0, 0)
-//    main.ellipseMode(2)
     main.ellipse(this.position.x+main.offset.x, this.position.y+main.offset.y, this.range.toFloat, this.range.toFloat)
-//    main.popMatrix()
   }
   
   def shoot
-  
+  // target check and get
   def checkTarget = {
     if(target.isDefined) {
       if(targetDistance > range || !target.get.isAlive) {
@@ -69,7 +60,7 @@ abstract class Towers(position: Pos) extends Buildable(position: Pos) {
       }
     }
   }
-  
+  //image for the tower
   def image() = {
 	  if(!loadedImage.isDefined) {
 	    loadedImage = Some(loader.get(image_id))
