@@ -11,7 +11,6 @@ object loader {
       "pig"  -> "Pig.png",
       "skeleton"  ->"Skeleton.png",
       "zombie"  -> "Zombie.png",
-      "tower" -> "tower.png",
       "ammo" -> "ammo.png",
       "back" -> "back.png",
       "RangeTower" -> "RangeTower.png",
@@ -20,9 +19,6 @@ object loader {
       "NormalTowerButton" -> "NormalButton.png",
       "RangeTowerButton" -> "RangeButton.png",
       "NormalTower" -> "NormalTower.png",
-      "buttonBlur" -> "button_blur.png",
-      "towerButton" -> "towerButton.png",
-      "longTowerButton" -> "longTowerButton.png",
       "playButton" -> "play.png",
       "farmback" -> "farmback.png"
   )
@@ -35,12 +31,12 @@ object loader {
 	
 	private val images = Map[String, PImage]()
 	
-	// Load all the images
+	// Load image
 	for(id <- names) {
 	  images(id._1) = loadImage(id._2)
 	}
 	
-	// Returns the wanted image if found
+	// Return image if found
 	def get(id: String) : PImage = {
 	  var i = images.get(id)
 	  
