@@ -16,9 +16,6 @@ class PigEnemy extends Enemy {
   
   position = result*32
   
-  def draw(scale: Int) = {
-	  if (frame > 0) main.image(pic, this.position.x, this.position.y)
-	  else main.image(image, this.position.x, this.position.y)
-	}
+  def draw(scale: Int) = main.image(pic, this.position.x, this.position.y)
   
 }

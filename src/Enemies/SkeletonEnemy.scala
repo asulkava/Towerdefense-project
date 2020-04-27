@@ -6,9 +6,10 @@ import Main._
 import Enemies._
  
 class SkeletonEnemy extends Enemy {
-  maxHP = 100
-  HP = 100
-  speed = 1.0
+  maxHP = 60
+  HP = 60
+  speed = 2.0
+  bounty = 30
   var pic = loader.get("skeleton").get
  
   var rand2 = new Random(System.currentTimeMillis())
@@ -16,9 +17,7 @@ class SkeletonEnemy extends Enemy {
   
   position = result*32
   
-  def draw(scale: Int) = {
-	  if (frame > 0) main.image(pic, this.position.x, this.position.y)
-	  else main.image(image, this.position.x, this.position.y)
-	}
+  def draw(scale: Int) = main.image(pic, this.position.x, this.position.y)
+	 
   
 }
