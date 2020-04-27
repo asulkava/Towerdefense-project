@@ -39,30 +39,8 @@ abstract class Enemy {
 	  }
 	  loadedImage.get
 	}
-
-  def checkWall = {
-    if (GameMap.getTile(this.position+Pos(10,0)).solid) {
-      this.position += Pos(-5,0)
-    }
-    else if (GameMap.getTile(this.position+Pos(0,10)).solid) {
-      this.position += Pos(0,-5)
-    }
-    else if (GameMap.getTile(this.position+Pos(-10,0)).solid) {
-      this.position += Pos(5,0)
-    }
-    else if (GameMap.getTile(this.position+Pos(0,-10)).solid) {
-      this.position += Pos(0,5)
-    }
-  }
   
-  def checkForEnemies = {
-    for(enemy <- PlayState.enemies) {
-      if((this.position).distanceToAnother(enemy.position) < 20) {
-        this.position = this.position - (enemy.position - this.position).normalized()*3
-      }
-    }
-  }
-  
+  // check if the enemy is on target
   def checkTarget = {
     if ( this.currentTarget < Path.points.length && this.position.distanceToAnother(this.target) < 10) {
       if(currentTarget == Path.points.length-1) 
@@ -77,17 +55,17 @@ abstract class Enemy {
       }
     }
   }
+   
   
-  def isHit = {
-    this.speed -= 0.1
-  }
-  
+  //move the enemy
   def movePos = (this.target - this.position).normalized()*this.speed
-  
+ 
   def move(pos: Pos) = {
     this.position += pos
   }
+ 
   
+  // hit the enemy
   def hit(DMG: Int) = {
     this.speed -= 0.1
     this.HP -= DMG
