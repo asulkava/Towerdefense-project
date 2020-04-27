@@ -9,10 +9,9 @@ object MenuState extends GameState {
   var settings = false
   var Instructions = false
   var img = loader.get("farmback").get
-  var img2 = loader.get("rightClick").get
-  var img3 = loader.get("leftClick").get
-  var moneyimg = loader.get("money").get
   var playimg = loader.get("playButton").get
+  
+  // all the different buttons
   var buttons = Map[String, Button](
                   "start" -> new Button(400, 250, 250, 35, "Start"),
                   "settings" -> new Button(400, 300, 250, 35, "Settings"),
@@ -23,6 +22,11 @@ object MenuState extends GameState {
                            
   var backButton = Map[String, Button]("back" -> new Button(400, 500, 250, 35, "Back"))
   
+  var settingsButtons = Map[String, Button](
+                           "map" -> new Button(400, 250, 250, 35, Settings.mapText),
+                           "difficulty" -> new Button(400,300, 250,35, Settings.difficultyText),
+                           "back" -> new Button(400,350, 250, 35, "Back"))
+  
   def init = {
     main.background(175,175,175)
   }
@@ -30,44 +34,51 @@ object MenuState extends GameState {
   def terminate = {
     
   }
-  
+  // update the state
   def update(dt: Double) = {
-  
-      buttons.values.foreach(_.update())
-    
+  if (settings) settingsButtons.values.foreach(_.update())
+  else buttons.values.foreach(_.update())
   }
   
 
-	
+	// draw the menu
   def draw(dt: Double) = {
     main.image(img, 0, 0, 800, 670)
     
     if (settings) {
-      
+      settingsButtons.values.foreach(_.draw())
     }
     else if (Instructions) {
       backButton.values.foreach(_.draw())
-      main.image(img2, 30, 20)
-      main.image(img3, 30, 100)
-      main.image(moneyimg, 30, 200)
       main.textAlign(1, 3)
       main.fill(main.fontColor._1, main.fontColor._2, main.fontColor._3)
       main.textFont(font)
-      main.text("Left click to select and build", 80, 70)
-      main.text("Right click to clear selection", 80, 150)
-      main.text("Use money to buy towers and use abilities", 180, 220)
+      main.text("1. Left click mouse to select and build.", 80, 70)
+      main.text("2. Right click to reset selections.", 80, 150)
+      main.text("3. Use your earned money to buy more towers.", 80, 220)
     }
     else {
       buttons.values.foreach(_.draw())
     }
   }
   
+  // check for mousePresses
   def mousePress(key: Int) = {
     
     if(key == 37) {
       
       if(settings) {
-        
+        if (settingsButtons("map").isOn()) {
+          Settings.changeMap
+          settingsButtons("map").text = Settings.mapText
+        }
+        else if(settingsButtons("difficulty").isOn()) {
+          Settings.incDifficulty
+          settingsButtons("difficulty").text = Settings.difficultyText
+        }
+        else if(settingsButtons("back").isOn()) {
+          settings = false
+        }
       }
       else if (Instructions) {
         if (backButton("back").isOn()) {
