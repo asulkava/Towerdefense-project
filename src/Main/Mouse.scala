@@ -64,7 +64,7 @@ object Mouse {
   def build(number :Int) = {
     Player.money -= towerNum(number).cost
     Player.spent += towerNum(number).cost
-    PlayState.LargeTexts += new Info(Pos(670, 575), System.nanoTime(), "$ - " + towerNum(number).cost, 255,150,0,40)
+    PlayState.texts2 += new Info(Pos(670, 575), System.nanoTime(), "$ - " + towerNum(number).cost, 255,150,0,40)
   }
   
   // not enough money text
